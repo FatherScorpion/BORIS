@@ -1,1 +1,1 @@
-print("korega hyouzi saretara seikou desu")
+print("test")
