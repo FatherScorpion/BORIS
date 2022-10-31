@@ -28,6 +28,8 @@ for i in range(5):
 servoMotors[0].setAngle(0)
 servoMotors[1].setAngle(0)
 servoMotors[2].setAngle(0)
+nowX=0
+nowY=0
 
 for i in range(4):
   moveX(90)
