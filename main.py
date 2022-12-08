@@ -5,7 +5,7 @@ nowX=0
 nowY=0
 
 def moveX(a):
-  servoMotors[0].setAngle(a)
+  servoMotors[0].setAngle(1000)
 
 def moveY(a):
   servoMotors[1].setAngle(a)
