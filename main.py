@@ -8,7 +8,7 @@ def moveX(a):
   servoMotors[0].setAngle(a)
 
 def moveY(a):
-  servoMotors[1].setAngle(a)
+  servoMotors[1].setAngle(1000)
 
 servoMotors = []
 
