@@ -9,10 +9,10 @@ def moveX(a):
 
 def moveY(a):
   nowY=nowY+a
-  if moveY>90:
-    moveY=90
-  elif moveY<0:
-      moveY=0
+  if nowY>90:
+    nowY=90
+  elif nowY<0:
+      nowY=0
   servoMotors[1].setAngle(nowY)
 
 servoMotors = []
