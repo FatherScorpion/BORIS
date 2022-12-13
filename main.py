@@ -5,7 +5,12 @@ nowX=0
 nowY=0
 
 def moveX(a):
-  servoMotors[0].setAngle(1000)
+  nowX=nowX+a
+  if nowX>180:
+    nowX=180
+  elif nowX<0:
+    nowX=0
+  servoMotors[0].setAngle(nowX)
 
 def moveY(a):
   nowY=nowY+a
