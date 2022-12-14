@@ -31,7 +31,7 @@ def moveY(a):
   servoMotors[1].setAngle(nowY)
 
 def turnOnLedByMode():
-  # ここを中島君お願いします
+  # ここを森君お願いします
   # モードによってLEDを切り替える処理です
   # modeというグローバル変数を用意したので、0~3までの範囲で切り替わる感じで
   # ピン番号はledPinという変数に持たせてあるので、気にしなくてよいです
