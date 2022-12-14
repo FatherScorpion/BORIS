@@ -72,5 +72,6 @@ moveY(-180)
 
 # ここからループ処理
 while 1:
-  a=0
+  checkSwitch()
+  turnOnLedByMode()
 # ここまでループ処理
