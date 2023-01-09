@@ -39,13 +39,14 @@ def turnOnLedByMode():
   # 必要があればグローバル変数はどんどん増やして大丈夫です
   # 以下に参考として、モード0用のLEDを点滅させるプログラムを書いておきます
   if mode=0 :GPIO.output(ledPin[0], GPIO.HIGH) # ON
-  GPIO.output(ledPin[0], GPIO.LOW) # OFF 0を他の数字に変えれば他のモードにも対応できます
+  else GPIO.output(ledPin[0], GPIO.LOW) # OFF 0を他の数字に変えれば他のモードにも対応できます
   if mode=1 :GPIO.output(ledPin[1], GPIO.HIGH) # ON
-  GPIO.output(ledPin[1], GPIO.LOW)
+  else GPIO.output(ledPin[1], GPIO.LOW)
    if mode=2: GPIO.output(ledPin[2], GPIO.HIGH) # ON
-  GPIO.output(ledPin[2], GPIO.LOW)
+  else GPIO.output(ledPin[2], GPIO.LOW)
    if mode=3: GPIO.output(ledPin[3], GPIO.HIGH) # ON
-  GPIO.output(ledPin[3], GPIO.LOW)
+  else GPIO.output(ledPin[3], GPIO.LOW)
+
 def checkSwitch():
   # ここを中島君お願いします
   # スイッチが押されたらモードを切り替える処理です
