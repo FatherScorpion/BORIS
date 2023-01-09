@@ -38,9 +38,9 @@ def turnOnLedByMode():
   # ledPinは配列で、ledPin[0]~ledPin[3]のそれぞれをmode=0~3に対応させて下さい。
   # 必要があればグローバル変数はどんどん増やして大丈夫です
   # 以下に参考として、モード0用のLEDを点滅させるプログラムを書いておきます
-  if mode=0 :GPIO.output(ledPin[0], GPIO.HIGH) # ON
+  if mode=0: GPIO.output(ledPin[0], GPIO.HIGH) # ON
   else: GPIO.output(ledPin[0], GPIO.LOW) # OFF 0を他の数字に変えれば他のモードにも対応できます
-  if mode=1 :GPIO.output(ledPin[1], GPIO.HIGH) # ON
+  if mode=1: GPIO.output(ledPin[1], GPIO.HIGH) # ON
   else: GPIO.output(ledPin[1], GPIO.LOW)
   if mode=2: GPIO.output(ledPin[2], GPIO.HIGH) # ON
   else: GPIO.output(ledPin[2], GPIO.LOW)
