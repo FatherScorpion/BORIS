@@ -31,7 +31,6 @@ def moveY(a):
   servoMotors[1].setAngle(nowY)
 
 def turnOnLedByMode():
-
   if mode=0: GPIO.output(ledPin[0], GPIO.HIGH) 
   else: GPIO.output(ledPin[0], GPIO.LOW) 
   if mode=1: GPIO.output(ledPin[1], GPIO.HIGH) 
