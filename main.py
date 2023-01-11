@@ -31,13 +31,13 @@ def moveY(a):
   servoMotors[1].setAngle(nowY)
 
 def turnOnLedByMode():
-  if mode=0: GPIO.output(ledPin[0], GPIO.HIGH) 
+  if mode==0: GPIO.output(ledPin[0], GPIO.HIGH) 
   else: GPIO.output(ledPin[0], GPIO.LOW) 
-  if mode=1: GPIO.output(ledPin[1], GPIO.HIGH) 
+  if mode==1: GPIO.output(ledPin[1], GPIO.HIGH) 
   else: GPIO.output(ledPin[1], GPIO.LOW)
-  if mode=2: GPIO.output(ledPin[2], GPIO.HIGH) 
+  if mode==2: GPIO.output(ledPin[2], GPIO.HIGH) 
   else: GPIO.output(ledPin[2], GPIO.LOW)
-  if mode=3: GPIO.output(ledPin[3], GPIO.HIGH) 
+  if mode==3: GPIO.output(ledPin[3], GPIO.HIGH) 
   else: GPIO.output(ledPin[3], GPIO.LOW)
 
 def checkSwitch():
