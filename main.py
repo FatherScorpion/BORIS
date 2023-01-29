@@ -11,6 +11,9 @@ nowY=0
 mode=0 #0=停止,1=赤を打つ,2=黄色を打つ,3=人類は全員敵
 swPin=23
 ledPin=[4,17,7,22]
+safeAngle=0 #安全状態(モード0)の時に銃のロックが外れる角度
+lockAngle=90 #射撃状態(モード1~2)の時に銃がロックされる角度
+shotAngle=100 #引き金を引ける角度
 # ここまでグローバル変数
 
 # ここから関数
@@ -45,6 +48,14 @@ def checkSwitch():
   if isOn:mode=mode+1
   if mode==4:mode=0
   time.sleep(0.5)
+
+def checkGunlock():
+  if mode==0:
+   servoMotors[2].setAngle(safeAngle)
+  else:servoMotors[2].setAngle(lockAngle)
+ 
+def shot():
+  servoMotors[2].setAngle(hoge)
   
 # ここまで関数
 
