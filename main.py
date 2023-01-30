@@ -54,7 +54,8 @@ def checkGunlock():
     servoMotors[2].setAngle(hoge)
 
 def shot():
-  servoMotors[2].setAngle(hoge)
+  if lockAngle:
+    servoMotors[2].setAngle(shotAngle)
   
 # ここまで関数
 
