@@ -50,8 +50,9 @@ def checkSwitch():
   time.sleep(0.5)
 
 def checkGunlock():
-  if hogehoge:
-    servoMotors[2].setAngle(hoge)
+  if mode==0:
+   servoMotors[2].setAngle(safeAngle)
+  else:servoMotors[2].setAngle(lockAngle)
 
 def shot():
    servoMotors[2].setAngle(shotAngle)
