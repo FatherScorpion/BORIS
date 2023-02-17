@@ -9,9 +9,9 @@ import sys
 nowX=0
 nowY=0
 minX=0
-minY=40
+minY=50
 maxX=120
-maxY=66
+maxY=70
 defX=60
 defY=60
 
@@ -63,8 +63,8 @@ def checkSwitch():
   isOn=GPIO.input(swPin)
   if isOn:
     mode=mode+1
-    time.sleep(0.5)
-  if mode==4:mode=0
+    if mode==4:mode=0
+    time.sleep(1)
 
 def checkGunlock():
   global mode
