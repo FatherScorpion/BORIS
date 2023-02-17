@@ -83,6 +83,10 @@ def shot():
 # ここからセットアップ
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(swPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(ledPin[0], GPIO.OUT)
+GPIO.setup(ledPin[1], GPIO.OUT)
+GPIO.setup(ledPin[2], GPIO.OUT)
+GPIO.setup(ledPin[3], GPIO.OUT)
 servoMotors = []
 
 servoMotors.append(ServoMotor(Channel=0, ZeroOffset=0))
