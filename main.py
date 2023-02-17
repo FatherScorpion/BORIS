@@ -25,6 +25,9 @@ shotAngle=100 #引き金を引ける角度
 
 # ここから関数
 def moveX(a):
+  global nowX
+  global maxX
+  global minX
   nowX=nowX+a
   if nowX>maxX:
     nowX=maxX
@@ -33,6 +36,9 @@ def moveX(a):
   servoMotors[0].setAngle(nowX)
 
 def moveY(a):
+  global nowY
+  global maxY
+  global minY
   nowY=nowY+a
   if nowY>maxY:
     nowY=maxY
@@ -41,6 +47,7 @@ def moveY(a):
   servoMotors[1].setAngle(nowY)
 
 def turnOnLedByMode():
+  global mode
   if mode==0: GPIO.output(ledPin[0], GPIO.HIGH) 
   else: GPIO.output(ledPin[0], GPIO.LOW) 
   if mode==1: GPIO.output(ledPin[1], GPIO.HIGH) 
@@ -51,17 +58,24 @@ def turnOnLedByMode():
   else: GPIO.output(ledPin[3], GPIO.LOW)
 
 def checkSwitch():
+  global swPin
+  global mode
   isOn=GPIO.input(swPin)
   if isOn:mode=mode+1
   if mode==4:mode=0
   time.sleep(0.5)
 
 def checkGunlock():
+  global mode
+  global safeAngle
+  global lockAngle
   if mode==0:
    servoMotors[2].setAngle(safeAngle)
   else:servoMotors[2].setAngle(lockAngle)
 
 def shot():
+  global shotAngle
+  global lockAngle
    servoMotors[2].setAngle(shotAngle)
    servoMotors[2].setAngle(lockAngle)
 # ここまで関数
