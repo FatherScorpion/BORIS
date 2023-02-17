@@ -9,11 +9,11 @@ import sys
 nowX=0
 nowY=0
 minX=0
-minY=0
+minY=40
 maxX=120
-maxY=20
+maxY=66
 defX=60
-defY=0
+defY=60
 
 mode=0 #0=停止,1=赤を打つ,2=黄色を打つ,3=人類は全員敵
 swPin=23
