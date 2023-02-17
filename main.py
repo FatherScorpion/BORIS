@@ -10,9 +10,9 @@ nowX=0
 nowY=0
 minX=0
 minY=0
-maxX=180
-maxY=90
-defX=90
+maxX=120
+maxY=20
+defX=60
 defY=0
 
 mode=0 #0=停止,1=赤を打つ,2=黄色を打つ,3=人類は全員敵
