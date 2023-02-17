@@ -76,8 +76,8 @@ def checkGunlock():
 def shot():
   global shotAngle
   global lockAngle
-   servoMotors[2].setAngle(shotAngle)
-   servoMotors[2].setAngle(lockAngle)
+  servoMotors[2].setAngle(shotAngle)
+  servoMotors[2].setAngle(lockAngle)
 # ここまで関数
 
 # ここからセットアップ
