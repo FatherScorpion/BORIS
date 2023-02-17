@@ -93,12 +93,6 @@ servoMotors.append(ServoMotor(Channel=0, ZeroOffset=0))
 servoMotors.append(ServoMotor(Channel=1, ZeroOffset=0))
 servoMotors.append(ServoMotor(Channel=2, ZeroOffset=0))
 
-for i in range(180): # 起動した事を確認するためにモーターを適当に動かす
-  moveX(1)
-  moveY(1)
-  time.sleep(0.01)
-moveX(-180)
-moveY(-180)
 # ここまでセットアップ
 
 # ここからループ処理
