@@ -61,9 +61,10 @@ def checkSwitch():
   global swPin
   global mode
   isOn=GPIO.input(swPin)
-  if isOn:mode=mode+1
+  if isOn:
+    mode=mode+1
+    time.sleep(0.5)
   if mode==4:mode=0
-  time.sleep(0.5)
 
 def checkGunlock():
   global mode
@@ -77,6 +78,7 @@ def shot():
   global shotAngle
   global lockAngle
   servoMotors[2].setAngle(shotAngle)
+  time.sleep(0.5)
   servoMotors[2].setAngle(lockAngle)
 # ここまで関数
 
@@ -117,5 +119,4 @@ while 1:
     nowY=minY
   if mode==3:
     shot()
-    time.sleep(5)
 # ここまでループ処理
