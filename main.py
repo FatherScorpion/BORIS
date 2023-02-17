@@ -80,6 +80,7 @@ def shot():
   servoMotors[2].setAngle(shotAngle)
   time.sleep(0.5)
   servoMotors[2].setAngle(lockAngle)
+  time.sleep(0.5)
 # ここまで関数
 
 # ここからセットアップ
