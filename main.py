@@ -6,12 +6,12 @@ import sys
 # ↑インポート
 
 # ここからグローバル変数
-nowX=0
-nowY=0
+nowX=60
+nowY=60
 minX=0
 minY=50
 maxX=120
-maxY=70
+maxY=60
 defX=60
 defY=60
 
@@ -109,15 +109,11 @@ while 1:
     nowX=defX
     nowY=defY
   if mode==1:
-    servoMotors[0].setAngle(maxX)
-    servoMotors[1].setAngle(maxY)
-    nowX=maxX
-    nowY=maxY
+    moveX(5)
+    moveY(5)
   if mode==2:
-    servoMotors[0].setAngle(minX)
-    servoMotors[1].setAngle(minY)
-    nowX=minX
-    nowY=minY
+    moveX(-5)
+    moveY(-5)
   if mode==3:
     shot()
 # ここまでループ処理
