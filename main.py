@@ -3,13 +3,14 @@ import time
 import RPi.GPIO as GPIO
 import time
 import sys
+import detect_pose
 # ↑インポート
 
 # ここからグローバル変数
 nowX=60
 nowY=60
 minX=0
-minY=50
+minY=40
 maxX=120
 maxY=60
 defX=60
@@ -21,6 +22,8 @@ ledPin=[4,17,7,22]
 safeAngle=50 #安全状態(モード0)の時に銃のロックが外れる角度
 lockAngle=60 #射撃状態(モード1~2)の時に銃がロックされる角度
 shotAngle=100 #引き金を引ける角度
+
+searchDirection=1 #索敵の方向
 # ここまでグローバル変数
 
 # ここから関数
@@ -96,6 +99,12 @@ servoMotors.append(ServoMotor(Channel=0, ZeroOffset=0))
 servoMotors.append(ServoMotor(Channel=1, ZeroOffset=0))
 servoMotors.append(ServoMotor(Channel=2, ZeroOffset=0))
 
+detect_pose.initialize()
+
+moveX(10)
+moveY(-10)
+time.sleep(0.5)
+
 # ここまでセットアップ
 
 # ここからループ処理
@@ -115,5 +124,22 @@ while 1:
     moveX(-5)
     moveY(-5)
   if mode==3:
-    shot()
+    result=detect_pose.getPoseFromCamera()
+    if result.detect:
+      if result.position.y<280:
+        moveY(-1)
+      else:
+        moveY(1)
+      if result.position.x<320:
+        moveX(5)
+      else:
+        moveX(-5)
+      if 300<=result.position.x<=340:
+        shot()
+    else:
+      moveX(searchDirection)
+      if nowX==maxX: searchDirection*=-1
+      elif nowX==minX: searchDirection*=-1
+    time.sleep(0.1)
+
 # ここまでループ処理

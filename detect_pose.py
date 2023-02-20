@@ -59,10 +59,10 @@ def rgb_to_hue(r, g, b):
 
 def get_color_name(hue):
     # Check if hue is in the red range (0-30 or 330-360 degrees)
-    if hue >= 0 and hue < 30 or hue >= 355 and hue <= 360:
+    if hue >= 0 and hue < 20 or hue >= 355 and hue <= 360:
         return 'Red'
     # Check if hue is in the yellow range (30-60 degrees)
-    elif hue >= 30 and hue < 90:
+    elif hue >= 25 and hue < 90:
         return 'Yellow'
     # Otherwise, the hue is in a different color range
     else:
@@ -122,6 +122,7 @@ def getPoseFromCamera() -> PoseResult:
 
             red_cnt = 0
             yellow_cnt = 0
+            pixel_count = 0
 
             print(int(hidariue.x), int(migisita.x))
             print(int(hidariue.y), int(migisita.y))
@@ -136,9 +137,11 @@ def getPoseFromCamera() -> PoseResult:
                         red_cnt += 1
                     elif p_color == 'Yellow':
                         yellow_cnt += 1
+                    
+                    pixel_count += 1
             
             color = 'Other'
-            if max(red_cnt,yellow_cnt) > 100:
+            if max(red_cnt,yellow_cnt) > pixel_count * 0.05:
                 if red_cnt > yellow_cnt:
                     color = 'Red'
                 else:
