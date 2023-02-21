@@ -20,10 +20,12 @@ class Position:
 # position: position.x = x座標、position.y = y座標
 # positionはだいたい胸のあたりの座標
 class PoseResult:
-    def __init__(self, detect: bool, color: str, position: Position):
+    def __init__(self, detect: bool, color: str, position: Position, hidariue_position: Position, migisita_position: Position):
         self.detect = detect
         self.color = color
         self.position = position
+        self.hidariue_position = hidariue_position
+        self.migisita_position = migisita_position
 
 streamstop = False
 tm = NullHandler
@@ -103,7 +105,7 @@ def getPoseFromCamera() -> PoseResult:
         print('\nPose Score: ', pose.score)
         for label, keypoint in pose.keypoints.items():
             print('  %-20s x=%-4d y=%-4d score=%.1f' %(label.name, keypoint.point[0], keypoint.point[1], keypoint.score))
-            x,y = keypoint.point[0], keypoint.point[1]
+            # x,y = keypoint.point[0], keypoint.point[1]
             # draw.ellipse((x-r, y-r, x+r, y+r), fill=(int(255 * keypoint.score), 0, 0))
 
         items = list(pose.keypoints.values())
@@ -148,16 +150,16 @@ def getPoseFromCamera() -> PoseResult:
                     color = 'Yellow'
             
             target_point = Position((hidariue.x + migisita.x) // 2, (hidariue.y + migisita.y) // 2)
-            print(color,red_cnt,yellow_cnt)
+            print(color,red_cnt,yellow_cnt, pixel_count)
             print(target_point.x, target_point.y)
             # pthread = threading.Thread(target=savePicture, kwargs={'image':pil_image})
             # pthread.start()
-            return PoseResult(True, color, target_point)
+            return PoseResult(True, color, target_point, hidariue, migisita)
 
     # pthread = threading.Thread(target=savePicture, kwargs={'image':pil_image})
     # pthread.start()
 
-    return PoseResult(False, "Other", Position(0,0))
+    return PoseResult(False, "Other", Position(0,0), Position(0,0), Position(0,0))
 
 def initialize():
     global tm,streamstop,cap

@@ -14,7 +14,7 @@ minY=40
 maxX=120
 maxY=60
 defX=60
-defY=60
+defY=50
 
 mode=0 #0=停止,1=赤を打つ,2=黄色を打つ,3=人類は全員敵
 swPin=23
@@ -23,7 +23,7 @@ safeAngle=50 #安全状態(モード0)の時に銃のロックが外れる角度
 lockAngle=60 #射撃状態(モード1~2)の時に銃がロックされる角度
 shotAngle=100 #引き金を引ける角度
 
-searchDirection=1 #索敵の方向
+searchDirection=2 #索敵の方向
 # ここまでグローバル変数
 
 # ここから関数
@@ -100,10 +100,20 @@ servoMotors.append(ServoMotor(Channel=1, ZeroOffset=0))
 servoMotors.append(ServoMotor(Channel=2, ZeroOffset=0))
 
 detect_pose.initialize()
+GPIO.output(ledPin[0], GPIO.HIGH)
+GPIO.output(ledPin[1], GPIO.HIGH)
+GPIO.output(ledPin[2], GPIO.HIGH)
+GPIO.output(ledPin[3], GPIO.HIGH)
+time.sleep(10)
 
 moveX(10)
 moveY(-10)
 time.sleep(0.5)
+
+GPIO.output(ledPin[0], GPIO.LOW)
+GPIO.output(ledPin[1], GPIO.LOW)
+GPIO.output(ledPin[2], GPIO.LOW)
+GPIO.output(ledPin[3], GPIO.LOW)
 
 # ここまでセットアップ
 
@@ -112,34 +122,59 @@ while 1:
   checkSwitch()
   turnOnLedByMode()
   checkGunlock()
+  result=detect_pose.getPoseFromCamera()
   if mode==0:
     servoMotors[0].setAngle(defX)
     servoMotors[1].setAngle(defY)
     nowX=defX
     nowY=defY
   if mode==1:
-    moveX(5)
-    moveY(5)
-  if mode==2:
-    moveX(-5)
-    moveY(-5)
-  if mode==3:
-    result=detect_pose.getPoseFromCamera()
-    if result.detect:
-      if result.position.y<280:
-        moveY(-1)
+    if result.detect and result.color=="Red":
+      if not (result.hidariue_position.y+(-result.hidariue_position.y+result.migisita_position.y)/2<=280<=result.migisita_position.y-(-result.hidariue_position.y+result.migisita_position.y)/2) and result.position.y<280:
+        moveY(-5)
       else:
-        moveY(1)
-      if result.position.x<320:
+        moveY(5)
+      if result.hidariue_position.x<=320<=result.migisita_position.x:
+        shot()
+      elif result.position.x<320:
         moveX(5)
       else:
         moveX(-5)
-      if 300<=result.position.x<=340:
-        shot()
     else:
       moveX(searchDirection)
       if nowX==maxX: searchDirection*=-1
       elif nowX==minX: searchDirection*=-1
-    time.sleep(0.1)
+  if mode==2:
+    if result.detect and result.color=="Yellow":
+      if not (result.hidariue_position.y+(-result.hidariue_position.y+result.migisita_position.y)/2<=280<=result.migisita_position.y-(-result.hidariue_position.y+result.migisita_position.y)/2) and result.position.y<280:
+        moveY(-5)
+      else:
+        moveY(5)
+      if result.hidariue_position.x<=320<=result.migisita_position.x:
+        shot()
+      elif result.position.x<320:
+        moveX(5)
+      else:
+        moveX(-5)
+    else:
+      moveX(searchDirection)
+      if nowX==maxX: searchDirection*=-1
+      elif nowX==minX: searchDirection*=-1
+  if mode==3:
+    if result.detect:
+      if not (result.hidariue_position.y+(-result.hidariue_position.y+result.migisita_position.y)/2<=280<=result.migisita_position.y-(-result.hidariue_position.y+result.migisita_position.y)/2) and result.position.y<280:
+        moveY(-5)
+      else:
+        moveY(5)
+      if result.hidariue_position.x<=320<=result.migisita_position.x:
+        shot()
+      elif result.position.x<320:
+        moveX(5)
+      else:
+        moveX(-5)
+    else:
+      moveX(searchDirection)
+      if nowX==maxX: searchDirection*=-1
+      elif nowX==minX: searchDirection*=-1
 
 # ここまでループ処理
